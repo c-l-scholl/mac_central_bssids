@@ -1,0 +1,7 @@
+*
+!.gitignore
+!main.py
+!requirements.txt
+!README.md
+!config.yaml
+!secrets_example.yaml

@@ -1,0 +1,8 @@
+#replace base url with production URL
+base_url: https://internal-apigw.central.arubanetworks.com
+refresh_uri: /oauth2/token
+refresh_method: POST
+bss_uri: /monitoring/v2/bssids
+bss_method: GET
+apinfo_uri: /monitoring/v2/aps
+apinfo_method: GET
