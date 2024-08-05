@@ -6,8 +6,7 @@ import aiohttp.web
 import pandas as pd
 import yaml
 from pprint import pprint
-import pdb
-import traceback
+
 
 def open_yaml(file: str):
     """open and safe load yaml"""
@@ -109,7 +108,6 @@ async def main():
     
     except Exception as e: 
     # catch all
-        # pdb.set_trace()
         print(traceback.format_exc())
         raise SystemExit(f"Something went wrong during the refresh {e.__class__}:{e}")
 
@@ -124,30 +122,6 @@ async def main():
     #Reset headers with current token
     headers = {"accept": "application/json",
             "authorization": f"Bearer {secrets["access_token"]}"}
-
-
-#No concurrency
-    
-    # parameters = {"calculate_total": "true"}
-    
-    # try:
-        
-    #    bss_response = await make_request(session = aiohttp.ClientSession(), method = bss_method, url = base_url, uri = bss_uri, headers = headers, params = parameters)
-       
-    # except aiohttp.ServerTimeoutError as e:
-    # # eg, server unresponsive
-    #     raise SystemExit(f"Something went wrong during the refresh and the server didn't repsond {e.__class__}:{e}")
-    # except aiohttp.web.HTTPException as e:
-    # # eg, url, server and other errors
-    #     raise SystemExit(f"Something went wrong during the refresh with HTTP {e.__class__}:{e}")
-    # except Exception as e: 
-    # # catch all
-    #     # pdb.set_trace()
-    #     print(traceback.format_exc())
-    #     raise SystemExit(f"Something went wrong during the refresh {e.__class__}:{e}")
-    
-    # pprint(bss_response)
-
 
 # #With Concurrency
     #limiting put's less load per call, and can improve performance. 
