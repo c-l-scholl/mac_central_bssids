@@ -174,10 +174,21 @@ async def main():
                 next
     #pprint(prep)
 
+    #get all of the ap info and tie it into prep for ip address and site information
     aps_info = await request_until_no_pages(method = apinfo_method, url = base_url, uri = apinfo_uri, rate_count_per_sec = rate_count_per_sec, headers = headers, limit = 25)
-    with asyncio.
-
+    for ap in aps_info:
+        prep[ap["serial"]]["ip_address"] = ap["ip_address"]
+        prep[ap["serial"]]["site"] = ap["site"]
     
+    #pprint(prep)
+    
+    # put into csv after organizing
+    df = pd.DataFrame.from_dict(prep)
+    df = pd.DataFrame.transpose(df)
+    cols = ["serial", "name", "eth_mac", "ip_address", "site"]
+    #put ordered columns first, then append remaining
+    df = df[cols + [col for col in df.columns if col not in cols]]
+    df.to_csv("output.csv")
     
     #timestamp end and return difference for total run time.     
     exec_time = time.time() - start_time
