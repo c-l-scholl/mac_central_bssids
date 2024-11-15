@@ -9,7 +9,15 @@ This script outputs a CSV with basic AP properities (eth_mac, ip_address, name, 
 ## Set up
 
 1. create a venv following the official python docs for your environment and activate it
+```bash
+python -m venv <venv-name>
+source <venv-name>/bin/activate
+```
 2. run command: pip install -r requirements.txt to install project requirements
+```bash
+cd <venv-name>
+pip install -r requirements.txt
+```
 3. modify your "sample_secrets.yaml" file to include your client id, client secret, token and refresh token from the aruba central instance
 4. rename the secrets file "secrets.yaml"
 5. update the base_url value in "config.yaml" to the respective api gateway of your instance
